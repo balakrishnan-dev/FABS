@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-layout="twocolumn" data-sidebar="light" data-sidebar-size="lg">
+<html lang="en" data-layout="vertical" data-sidebar="light" data-sidebar-size="lg">
 
     
 <!-- Mirrored from themesbrand.com/velzon/html/creative/forms-layouts.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 10 Feb 2022 08:07:17 GMT -->
@@ -65,8 +65,7 @@
     </span>
 </a>
 
-                    
-                </div>
+</div>
 
                 <button type="button" class="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger" id="topnav-hamburger-icon">
                     <span class="hamburger-icon">

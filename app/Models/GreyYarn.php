@@ -8,21 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class GreyYarn extends Model
 {
     use HasFactory;
-
-    protected $fillable = ['type', 'code', 'description'];
-
-    public function yarnPurchases()
-    {
-        return $this->hasMany(YarnPurchase::class);
-    }
-
-    public function yarnStocks()
-    {
-        return $this->hasMany(YarnStock::class);
-    }
-
-    public function yarnDisplays()
-    {
-        return $this->hasMany(YarnDisplay::class);
-    }
+    protected $fillable = [
+        'count', 'group_name', 'yarn_name', 'count_name', 'type',
+        'unit', 'warp_otam', 'weft_otam', 'seer_warp_otam',
+        'purchase_date', 'opening_stock', 'pootu', 'bondhu_bundle',
+        'pootu_bondhu', 'pootu_bundle'
+    ];
 }

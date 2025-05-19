@@ -15,17 +15,18 @@ return new class extends Migration
         $table->id();
         $table->date('date_from');
         $table->date('date_to');
-        $table->unsignedBigInteger('ledger_id'); // Ledger Master reference
-        $table->decimal('amount', 12, 2);
-        $table->string('bill_no');
-        $table->unsignedBigInteger('bank_id');   // Bank Master reference
-        $table->string('type');
+        $table->unsignedBigInteger('ledger_id')->nullable();
+        $table->decimal('amount', 10, 2)->nullable();
+        $table->string('bill_no')->nullable();
+        $table->unsignedBigInteger('bank_id')->nullable(); // must be nullable if using set null
+        $table->string('type')->nullable();
         $table->timestamps();
+
         $table->foreign('ledger_id')->references('id')->on('ledger_masters')->onDelete('cascade');
         $table->foreign('bank_id')->references('id')->on('bank_masters')->onDelete('set null');
-    });
 
-    }
+    });
+}
 
     /**
      * Reverse the migrations.

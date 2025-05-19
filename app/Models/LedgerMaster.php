@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\GroupMaster;
-
+use App\Models\BankMaster;
 
 class LedgerMaster extends Model
 {

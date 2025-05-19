@@ -160,6 +160,29 @@
         <script src="assets/js/pages/password-addon.init.js"></script>
     </body>
 
+    
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const toggleBtn = document.getElementById("password-addon");
+        const passwordInput = document.getElementById("password");
+
+        toggleBtn.addEventListener("click", function () {
+            const icon = this.querySelector("i");
+            const isPassword = passwordInput.getAttribute("type") === "password";
+            passwordInput.setAttribute("type", isPassword ? "text" : "password");
+
+            // Toggle icon class
+            if (isPassword) {
+                icon.classList.remove("ri-eye-fill");
+                icon.classList.add("ri-eye-off-fill");
+            } else {
+                icon.classList.remove("ri-eye-off-fill");
+                icon.classList.add("ri-eye-fill");
+            }
+        });
+    });
+</script>
+
 
 <!-- Mirrored from themesbrand.com/velzon/html/creative/auth-signin-basic.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 10 Feb 2022 08:06:47 GMT -->
 </html>

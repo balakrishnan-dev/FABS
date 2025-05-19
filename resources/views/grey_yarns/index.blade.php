@@ -14,7 +14,6 @@
                     <div class="page-content">
                         <div class="container-fluid">
 
-            <!-- start page title -->
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
@@ -29,55 +28,73 @@
                 </div>
             </div>
             <!-- end page title -->
-
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div id="customerList">
-                                <div class="row g-4 mb-3">
-                                    <div class="col-sm-auto">
-                                        <a href="{{ route('grey-yarns.create') }}" class="btn btn-success add-btn btn-sm">
-                                            <i class="ri-add-line align-bottom me-1"></i> Add
-                                        </a>
-                                    </div>
-                                </div>
+                            <div class="col-lg-12">
+                                <div class="card">
+                      
 
-                                <div class="table-responsive">
-                                    <table class="table align-middle table-nowrap" id="greyYarnsTable">
-                                        <thead class="table-light">
-                                            <tr>
-                                                <th style="width: 50px;">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="checkAll" />
+                                    <div class="card-body">
+                                        <div id="customerList">
+                                            <div class="row g-4 mb-3">
+                                                <div class="col-sm-auto">
+                                                    <div>
+                                                    <a href="{{ route('grey_yarns.create') }}" class="btn btn-success add-btn btn-sm">
+                                                        <i class="ri-add-line align-bottom me-1"></i> Add
+                                                    </a>
+
                                                     </div>
-                                                </th>
-                                                <th>#</th>
-                                                <th>Type</th>
-                                                <th>Count</th>
-                                                <th>Shade</th>
-                                                <th>Action</th>
-                                                <th>Created At</th>
-                                                <th>Updated At</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <!-- Dynamic rows go here -->
-                                        </tbody>
-                                    </table>
-                                </div>
+                                                </div>
+                                                <div class="col-sm">
+                                                    <div class="d-flex justify-content-sm-end">
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="table-responsive">
+                                <table class="table align-middle table-nowrap" id="grey_yarnsTable">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th style="width: 50px;">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="checkAll" />
+                                                </div>
+                                            </th>
+                                                        <th>Count</th>
+                                                        <th>Group Name</th>
+                                                        <th>Yarn Name</th>
+                                                        <th>Count Name</th>
+                                                        <th>Type</th>
+                                                        <th>Unit</th>
+                                                        <th>Warp Otam</th>
+                                                        <th>Weft Otam</th>
+                                                        <th>Seer Warp Otam</th>
+                                                        <th>Purchase Date</th>
+                                                        <th>Opening Stock</th>
+                                                        <th>Pootu</th>
+                                                        <th>Bondhu Bundle</th>
+                                                        <th>Pootu Bondhu</th>
+                                                        <th>Pootu Bundle</th>
+                                                        <th>Created At</th>
+                                                        <th>Updated At</th>
+                                                        <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Dynamic rows go here -->
+                                    </tbody>
+                                </table>
+                            </div>
 
-                                <div class="noresult d-none">
-                                    <div class="text-center">
-                                        <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop"
-                                            colors="primary:#121331,secondary:#08a88a" style="width:75px;height:75px">
-                                        </lord-icon>
-                                        <h5 class="mt-2">Sorry! No Result Found</h5>
-                                        <p class="text-muted mb-0">We've searched more than 150+ Orders. No matching results found.</p>
-                                    </div>
+                            <!-- No result placeholder -->
+                            <div class="noresult d-none">
+                                <div class="text-center">
+                                    <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop"
+                                        colors="primary:#121331,secondary:#08a88a" style="width:75px;height:75px">
+                                    </lord-icon>
+                                    <h5 class="mt-2">Sorry! No Result Found</h5>
+                                    <p class="text-muted mb-0">We've searched more than 150+ Orders. No matching results found.</p>
                                 </div>
-                            </div> <!-- end customerList -->
+                            </div>
                         </div> <!-- end card-body -->
                     </div> <!-- end card -->
                 </div> <!-- end col -->
@@ -86,42 +103,42 @@
     </div> <!-- page-content -->
 </div> <!-- main-content -->
 
-<!-- Delete Confirmation Modal -->
-<div class="modal fade zoomIn" id="deleteRecordModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="btn-close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="mt-2 text-center">
-                    <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop"
-                        colors="primary:#f7b84b,secondary:#f06548" style="width:100px;height:100px">
-                    </lord-icon>
-                    <div class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
-                        <h4>Are you Sure?</h4>
-                        <p class="text-muted mb-0">Are you sure you want to remove this record?</p>
-                    </div>
+    <!-- Modal -->
+    <div class="modal fade zoomIn" id="deleteRecordModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="btn-close"></button>
                 </div>
-                <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
-                    <button type="button" class="btn w-sm btn-light" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn w-sm btn-danger" id="delete-record">Yes, Delete It!</button>
+                <div class="modal-body">
+                    <div class="mt-2 text-center">
+                        <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop"
+                            colors="primary:#f7b84b,secondary:#f06548" style="width:100px;height:100px"></lord-icon>
+                        <div class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
+                            <h4>Are you Sure ?</h4>
+                            <p class="text-muted mx-4 mb-0">Are you Sure You want to Remove this Record ?</p>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
+                        <button type="button" class="btn w-sm btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn w-sm btn-danger" id="delete-record">Yes, Delete It!</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- End Modal -->
-
-@include('template.footer')
-
-<!-- Scripts -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <!-- end modal -->
+<!-- DataTables Scripts -->
+<script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="//cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.css" rel="stylesheet">
+<link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
 
+
+
+    @include('template.form_footer')
 
 
 @if(session('success'))
@@ -148,33 +165,41 @@
 
 <script>
 $(function () {
-        
-   
-    var table = $('#greyYarnsTable').DataTable({
+    var table = $('#grey_yarnsTable').DataTable({
     processing: true,
     serverSide: true,
     lengthChange: true,
     searching: true,
     paging: true,
     info: true,
-    scrollX: true,
-    scrollCollapse: true,
-    ajax: "{{ route('grey-yarns.data') }}",
+    ajax: "{{ route('grey_yarns.data') }}",
    
+     
     columns: [
         { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
+        { data: 'count', name: 'count' },
+        { data: 'group_name', name: 'group_name' },
+        { data: 'yarn_name', name: 'yarn_name' },
+        { data: 'count_name', name: 'count_name' },
         { data: 'type', name: 'type' },
-        { data: 'code', name: 'code' },
-        { data: 'description', name: 'description' },
+        { data: 'unit', name: 'unit' },
+        { data: 'warp_otam', name: 'warp_otam' },
+        { data: 'weft_otam', name: 'weft_otam' },
+        { data: 'seer_warp_otam', name: 'seer_warp_otam' },
+        { data: 'purchase_date', name: 'purchase_date' },
+        { data: 'opening_stock', name: 'opening_stock' },
+        { data: 'pootu', name: 'pootu' },
+        { data: 'bondhu_bundle', name: 'bondhu_bundle' },
+        { data: 'pootu_bondhu', name: 'pootu_bondhu' },
+        { data: 'pootu_bundle', name: 'pootu_bundle' },
         { data: 'created_at', name: 'created_at' },
         { data: 'updated_at', name: 'updated_at' },
-        { data: 'action', name: 'action', orderable: false, searchable: false }
-    ]
-
+        { data: 'action', name: 'action', orderable: false, searchable: false },
+    ],
 });
 
     // Handle edit form submission
-    $('#editgreyYarnsForm').on('submit', function(e) {
+    $('#editgreyyarnsForm').on('submit', function(e) {
         e.preventDefault();
         var form = $(this);
         var actionUrl = form.attr('action');
@@ -186,14 +211,14 @@ $(function () {
             data: formData,
             success: function(response) {
                 $('#editModal').modal('hide');
-                $('#greyYarnsTable').DataTable().ajax.reload();
+                $('#grey_yarnsTable').DataTable().ajax.reload();
                 toastr.success('Record updated successfully', 'Success', {
                     positionClass: 'toast-top-right', // Show message in top-right corner
                     timeOut: 5000, // Message will be shown for 5 seconds
                 });
             },
             error: function(xhr, status, error) {
-                toastr.error('An error occurred while updating the greyYarnsTable.', 'Error', {
+                toastr.error('An error occurred while updating the grey_yarns.', 'Error', {
                     positionClass: 'toast-top-right',
                     timeOut: 5000,
                 });
@@ -204,14 +229,13 @@ $(function () {
   $('#deleteRecordModal').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget);
         var recordId = button.data('id');
-        var deleteUrl = '{{ route("grey-yarns.destroy", ":id") }}';
+        var deleteUrl = '{{ route("grey_yarns.destroy", ":id") }}';
         deleteUrl = deleteUrl.replace(':id', recordId);
         $('#delete-record').data('url', deleteUrl);
     });
 
     // Delete the record
-  // Delete the record
-  $('#delete-record').click(function () {
+        $('#delete-record').click(function () {
         var url = $(this).data('url');
         $.ajax({
             url: url,
@@ -234,5 +258,6 @@ $(function () {
         });
     });
 });
+
 
 </script>

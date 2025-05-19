@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ledger;
+use App\Models\LedgerMaster;
+use App\Models\BankMaster;
+use App\Models\TdsMaster;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Carbon\Carbon;
@@ -10,26 +12,56 @@ use Carbon\Carbon;
 class TdsMasterController extends Controller
 {
         public function index() {
-        return view('tds_masters.index');
+        return view('tds-masters.index');
     }
 
-    public function getData(Request $request) {
+    public function getTDS(Request $request)
+{
+    if ($request->ajax()) {
         $data = TdsMaster::with(['ledger', 'bank'])->latest()->get();
+
         return DataTables::of($data)
             ->addIndexColumn()
-            ->editColumn('date_from', fn($row) => $row->date_from->format('d-m-Y'))
-            ->editColumn('date_to', fn($row) => $row->date_to->format('d-m-Y'))
-            ->addColumn('ledger_name', fn($row) => $row->ledger->ledger_name ?? '-')
-            ->addColumn('bank_name', fn($row) => $row->bank->bank_name ?? '-')
-            ->addColumn('action', fn($row) => '<a href="'.route('tds-masters.edit', $row->id).'" class="btn btn-sm btn-primary">Edit</a>')
+
+            ->editColumn('ledger_id', function ($row) {
+                return $row->ledger->ledger_name ?? '-';
+            })
+
+            ->editColumn('bank_id', function ($row) {
+                return $row->bank->bank_name ?? '-';
+            })
+
+            ->editColumn('date_from', function ($row) {
+                return Carbon::parse($row->date_from)->format('d-m-Y');
+            })
+
+            ->editColumn('date_to', function ($row) {
+                return Carbon::parse($row->date_to)->format('d-m-Y');
+            })
+
+            ->editColumn('created_at', function ($row) {
+                return Carbon::parse($row->created_at)->diffForHumans();
+            })
+
+            ->editColumn('updated_at', function ($row) {
+                return Carbon::parse($row->updated_at)->diffForHumans();
+            })
+
+            ->addColumn('action', function ($row) {
+                $editBtn = '<a href="' . route('tds-masters.edit', $row->id) . '" class="btn btn-sm btn-success">Edit</a>';
+                $deleteBtn = '<button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteRecordModal" data-id="' . $row->id . '">Remove</button>';
+                return $editBtn . ' ' . $deleteBtn;
+            })
+
             ->rawColumns(['action'])
             ->make(true);
     }
+}
 
     public function create() {
         $ledgers = LedgerMaster::all();
         $banks = BankMaster::all();
-        return view('tds_masters.create', compact('ledgers', 'banks'));
+        return view('tds-masters.create', compact('ledgers', 'banks'));
     }
 
     public function store(Request $request) {
@@ -49,26 +81,43 @@ class TdsMasterController extends Controller
 
     public function edit($id)
     {
-        $country = Country::findOrFail($id);
-        return view('countries.edit', compact('country'));
+        $tdsMaster = TdsMaster::find($id);
+        $ledgers = LedgerMaster::all();
+        $banks = BankMaster::all();
+        return view('tds-masters.edit', compact('tdsMaster','ledgers', 'banks'));
     }
  
       
     public function update(Request $request, $id)
     {
-        $country = Country::findOrFail($id);
-        $country->update([
-            'country_name' => $request->country_name,
-            'currency_name' => $request->currency_name,
+            $request->validate([
+                'date_from'   => 'required|date',
+                'date_to'     => 'required|date|after_or_equal:date_from',
+                'ledger_id'   => 'required|exists:ledger_masters,id',
+                'amount'      => 'nullable|numeric|min:0',
+                'bill_no'     => 'nullable|string|max:255',
+                'bank_id'     => 'nullable|exists:bank_masters,id',
+                'type'        => 'nullable|string|max:100',
+            ]);
+            $tdsMaster = TdsMaster::findOrFail($id);
+
+            $tdsMaster->update([
+            'date_from'   => $request->date_from,
+            'date_to'     => $request->date_to,
+            'ledger_id'   => $request->ledger_id,
+            'amount'      => $request->amount,
+            'bill_no'     => $request->bill_no,
+            'bank_id'     => $request->bank_id,
+            'type'        => $request->type,
         ]);
         
-        return redirect()->route('countries.index')->with('success', 'Record updated successfully!');
+        return redirect()->route('tds-masters.index')->with('success', 'Record updated successfully!');
     }
 
     public function destroy($id)
     {
-        $country = Country::findOrFail($id);
-        $country->delete();
-        return response()->json(['success' => 'Country deleted successfully']);
+        $tds = TdsMaster::findOrFail($id);
+        $tds->delete();
+        return response()->json(['success' => 'Record deleted successfully']);
     }
 }

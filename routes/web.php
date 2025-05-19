@@ -178,6 +178,7 @@ use App\Http\Controllers\AuthController;
 Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('login', [AuthController::class, 'login']);
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('logout', [AuthController::class, 'logout']);
 Route::get('register', [AuthController::class, 'showRegisterForm'])->name('register.submit');
 Route::post('register', [AuthController::class, 'register']);
 
@@ -300,5 +301,85 @@ Route::get('bank-masters-data', [BankMasterController::class, 'getData'])->name(
 
 
 use App\Http\Controllers\TdsMasterController;
+
 Route::resource('tds-masters', TdsMasterController::class);
-Route::get('tds-masters-data', [TdsMasterController::class, 'getData'])->name('tds-masters.data');
+Route::get('get-tds-data', [TdsMasterController::class, 'getTDS'])->name('tds-masters.data');
+Route::get('tds-masters/{id}/edit', [TdsMasterController::class, 'edit'])->name('tds-masters.edit');
+Route::put('tds-masters/{id}', [TdsMasterController::class, 'update'])->name('tds-masters.update');
+Route::delete('tds-masters/{tds}', [TdsMasterController::class, 'destroy'])->name('tds-masters.destroy');
+
+
+use App\Http\Controllers\SizingMasterController;
+
+Route::resource('sizing-masters', SizingMasterController::class);
+Route::get('get-sizing-data', [SizingMasterController::class, 'getSizing'])->name('sizing-masters.data');
+Route::get('sizing-masters/{id}/edit', [SizingMasterController::class, 'edit'])->name('sizing-masters.edit');
+Route::put('sizing-masters/{id}', [SizingMasterController::class, 'update'])->name('sizing-masters.update');
+Route::delete('sizing-masters/{sizing}', [SizingMasterController::class, 'destroy'])->name('sizing-masters.destroy');
+
+
+
+use App\Http\Controllers\GreyYarnController;
+
+Route::resource('grey_yarns', GreyYarnController::class);
+Route::get('grey-yarns-data', [GreyYarnController::class, 'getGreyYarns'])->name('grey_yarns.data');
+Route::get('grey_yarns/{id}/edit', [GreyYarnController::class, 'edit'])->name('grey_yarns.edit');
+Route::put('grey_yarns/{id}', [GreyYarnController::class, 'update'])->name('grey_yarns.update');
+Route::delete('grey_yarns/{grey_yarns}', [GreyYarnController::class, 'destroy'])->name('grey_yarns.destroy');
+
+
+
+use App\Http\Controllers\YarnDisplayController;
+
+Route::get('/yarns_displays', [YarnDisplayController::class, 'index'])->name('yarns_displays.index');
+Route::get('/yarns_displays/data', [YarnDisplayController::class, 'getData'])->name('yarns_displays.data');
+
+
+use App\Http\Controllers\PackingSlipController;
+
+Route::get('packing_slips', [PackingSlipController::class, 'index'])->name('packing_slips.index');
+Route::get('packing_slips/create', [PackingSlipController::class, 'create'])->name('packing_slips.create');
+Route::get('packing_slips/data', [PackingSlipController::class, 'getData'])->name('packing_slips.data');
+Route::post('packing_slips', [PackingSlipController::class, 'store'])->name('packing_slips.store');
+Route::get('packing_slips/{packingSlip}/edit', [PackingSlipController::class, 'edit'])->name('packing_slips.edit');
+Route::put('packing_slips/{packingSlip}', [PackingSlipController::class, 'update'])->name('packing_slips.update');
+Route::delete('packing_slips/{packingSlip}', [PackingSlipController::class, 'destroy'])->name('packing_slips.destroy');
+
+
+
+
+use App\Http\Controllers\LorryController;
+
+Route::get('lorries_masters', [LorryController::class, 'index'])->name('lorries_masters.index');
+Route::get('lorries_masters/create', [LorryController::class, 'create'])->name('lorries_masters.create');
+Route::get('lorries_masters/data', [LorryController::class, 'getData'])->name('lorries_masters.data');
+Route::post('lorries_masters', [LorryController::class, 'store'])->name('lorries_masters.store');
+Route::get('lorries_masters/{lorry}/edit', [LorryController::class, 'edit'])->name('lorries_masters.edit');
+Route::put('lorries_masters/{lorry}', [LorryController::class, 'update'])->name('lorries_masters.update');
+Route::delete('lorries_masters/{lorry}', [LorryController::class, 'destroy'])->name('lorries_masters.destroy');
+
+
+
+
+use App\Http\Controllers\LorryInvoiceDisplayController;
+
+Route::get('lorries_invoice_display', [LorryInvoiceDisplayController::class, 'index'])->name('lorries_invoice_display.index');
+Route::get('lorries_invoice_display/create', [LorryInvoiceDisplayController::class, 'create'])->name('lorries_invoice_display.create');
+Route::get('lorries-invoice-display-data', [LorryInvoiceDisplayController::class, 'getData'])->name('lorries_invoice_display.data');
+Route::post('lorries_invoice_display', [LorryInvoiceDisplayController::class, 'store'])->name('lorries_invoice_display.store');
+Route::get('lorries_invoice_display/{lorry}/edit', [LorryInvoiceDisplayController::class, 'edit'])->name('lorries_invoice_display.edit');
+Route::put('lorries_invoice_display/{lorry}', [LorryInvoiceDisplayController::class, 'update'])->name('lorries_invoice_display.update');
+Route::delete('lorries_invoice_display/{lorry}', [LorryInvoiceDisplayController::class, 'destroy'])->name('lorries_invoice_display.destroy');
+
+
+
+
+
+use App\Http\Controllers\DesignChartController;
+
+Route::resource('design_chart',DesignChartController::Class);
+Route::get('/get-design-data/{id}', [App\Http\Controllers\DesignChartController::class, 'show']);
+Route::get('/get-design-by-clno/{cl_no}', [DesignChartController::class, 'getByClNo']);
+Route::post('/store-recent-design', [DesignChartController::class, 'storeRecentDesign']);
+
+Route::post('/get-design-details', [DesignChartController::class, 'getDesignDetails'])->name('design_chart.getDesignDetails');

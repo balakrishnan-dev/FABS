@@ -94,9 +94,38 @@
 
 
 
+                {{-- Products Menu --}}
+                @php
+                    $productsRoutes = ['grey_yarns', 'yarns_displays','packing_slips', 'lorries_masters', 'lorries_invoice_display'];
+                    $isProductsOpen = in_array($currentRoute, $productsRoutes);
+                @endphp
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link {{ $isProductsOpen ? '' : 'collapsed' }}"
+                       href="#sidebarProductsMasters"
+                       data-bs-toggle="collapse"
+                       aria-expanded="{{ $isProductsOpen ? 'true' : 'false' }}"
+                       aria-controls="sidebarProductsMasters">
+                        <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Products Masters</span>
+                    </a>
+                    <div class="collapse menu-dropdown {{ $isProductsOpen ? 'show' : '' }}" id="sidebarProductsMasters">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item"><a href="{{ url('grey_yarns') }}" class="nav-link {{ Request::is('grey_yarns') ? 'active' : '' }}">Grey Yarn</a></li>         
+                            <li class="nav-item"><a href="{{ url('yarns_displays') }}" class="nav-link {{ Request::is('yarns_displays') ? 'active' : '' }}">Yarn Display</a></li>         
+                            <li class="nav-item"><a href="{{ url('packing_slips') }}" class="nav-link {{ Request::is('packing_slips') ? 'active' : '' }}">Packing Slip</a></li>         
+                            <li class="nav-item"><a href="{{ url('lorries_masters') }}" class="nav-link {{ Request::is('lorries_masters') ? 'active' : '' }}">Lorry Master</a></li>         
+                            <li class="nav-item"><a href="{{ url('lorries_invoice_display') }}" class="nav-link {{ Request::is('lorries_invoice_display') ? 'active' : '' }}">Lorry Invoice Display</a></li>         
+
+                        </ul>
+                    </div>
+                </li>
+   
+
+
+
                 {{-- Masters Menu --}}
                 @php
-                    $mastersRoutes = ['ports', 'countries', 'gst-config-masters', 'process', 'colours', 'narrations', 'payments', 'companies', 'weaving-masters'];
+                    $mastersRoutes = ['ports', 'countries', 'gst-config-masters','sizing-masters', 'process', 'colours', 'narrations', 'payments', 'companies', 'weaving-masters'];
                     $isMastersOpen = in_array($currentRoute, $mastersRoutes);
                 @endphp
 
@@ -112,6 +141,7 @@
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item"><a href="{{ url('ports') }}" class="nav-link {{ Request::is('ports') ? 'active' : '' }}">Ports</a></li>         
                             <li class="nav-item"><a href="{{ url('countries') }}" class="nav-link {{ Request::is('countries') ? 'active' : '' }}">Country</a></li>
+                            <li class="nav-item"><a href="{{ url('sizing-masters') }}" class="nav-link {{ Request::is('sizing-masters') ? 'active' : '' }}">sizing-masters</a></li>         
                             <li class="nav-item"><a href="{{ url('process') }}" class="nav-link {{ Request::is('process') ? 'active' : '' }}">Process</a></li>
                             <li class="nav-item"><a href="{{ url('colours') }}" class="nav-link {{ Request::is('colours') ? 'active' : '' }}">Colours</a></li>
                             <li class="nav-item"><a href="{{ url('narrations') }}" class="nav-link {{ Request::is('narrations') ? 'active' : '' }}">Narrations</a></li>
@@ -130,7 +160,7 @@
 
 {{-- Finance Masters Menu --}}
 @php
-    $financeRoutes = ['group-masters', 'ledger-masters', 'bank-masters'];
+    $financeRoutes = ['group-masters', 'ledger-masters', 'bank-masters','tds-masters'];
     $isFinanceOpen = in_array($currentRoute, $financeRoutes);
 @endphp
 
@@ -169,6 +199,12 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a href="{{ url('tds-masters') }}"
+                   class="nav-link {{ Request::is('tds-masters') ? 'active' : '' }}">
+                   <i class="ri-bar-chart-2-line"></i> TDS Masters
+                </a>
+            </li>
         </ul>
     </div>
 </li>
@@ -180,7 +216,7 @@
                 
              {{-- Designs Menu --}}
 @php
-    $designRoutes = ['designs', 'loom-types', 'buyers', 'year'];
+    $designRoutes = ['designs','design_chart', 'loom-types', 'buyers', 'year'];
     $isDesignOpen = in_array($currentRoute, $designRoutes);
 @endphp
 
@@ -199,6 +235,11 @@
             <li class="nav-item">
                 <a href="{{ url('designs') }}" class="nav-link {{ Request::is('designs') ? 'active' : '' }}">
                     <i class="ri-pencil-ruler-2-line"></i> Designs
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ url('design_chart') }}" class="nav-link {{ Request::is('design_chart') ? 'active' : '' }}">
+                    <i class="ri-pencil-ruler-2-line"></i> Design Chart
                 </a>
             </li>
             <li class="nav-item">
