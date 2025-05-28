@@ -360,17 +360,15 @@ Route::delete('lorries_masters/{lorry}', [LorryController::class, 'destroy'])->n
 
 
 
-
 use App\Http\Controllers\LorryInvoiceDisplayController;
 
 Route::get('lorries_invoice_display', [LorryInvoiceDisplayController::class, 'index'])->name('lorries_invoice_display.index');
 Route::get('lorries_invoice_display/create', [LorryInvoiceDisplayController::class, 'create'])->name('lorries_invoice_display.create');
-Route::get('lorries-invoice-display-data', [LorryInvoiceDisplayController::class, 'getData'])->name('lorries_invoice_display.data');
+Route::get('lorries-invoice-display/data', [LorryInvoiceDisplayController::class, 'getData'])->name('lorries_invoice_display.data');
 Route::post('lorries_invoice_display', [LorryInvoiceDisplayController::class, 'store'])->name('lorries_invoice_display.store');
 Route::get('lorries_invoice_display/{lorry}/edit', [LorryInvoiceDisplayController::class, 'edit'])->name('lorries_invoice_display.edit');
 Route::put('lorries_invoice_display/{lorry}', [LorryInvoiceDisplayController::class, 'update'])->name('lorries_invoice_display.update');
 Route::delete('lorries_invoice_display/{lorry}', [LorryInvoiceDisplayController::class, 'destroy'])->name('lorries_invoice_display.destroy');
-
 
 
 
@@ -381,5 +379,11 @@ Route::resource('design_chart',DesignChartController::Class);
 Route::get('/get-design-data/{id}', [App\Http\Controllers\DesignChartController::class, 'show']);
 Route::get('/get-design-by-clno/{cl_no}', [DesignChartController::class, 'getByClNo']);
 Route::post('/store-recent-design', [DesignChartController::class, 'storeRecentDesign']);
+// routes/web.php
+Route::get('/autocomplete-clno', [DesignChartController::class, 'autocompleteClNo']);
 
-Route::post('/get-design-details', [DesignChartController::class, 'getDesignDetails'])->name('design_chart.getDesignDetails');
+Route::get('/filter-designs', [DesignChartController::class, 'filterDesigns'])->name('design_chart.filter');
+Route::get('/filter-colours', [DesignChartController::class, 'filterColours'])->name('design_chart.filter_colours');
+Route::post('/design_chart/store', [DesignChartController::class, 'store'])->name('design_charts.store');
+
+Route::get('/design_chart/print/{id}', [DesignChartController::class, 'print'])->name('design_chart.print');

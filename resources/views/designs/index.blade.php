@@ -59,7 +59,7 @@
                                                 <th>Width</th>
                                                 <th>Weaver Mts</th>
                                                 <th>Order Mts</th>
-                                                <th>Welt Mts</th>
+                                                <th>Weft Mts</th>
                                                 <th>Order Date</th>
                                                 <th>Count</th>
                                                 <th>Attention</th>
@@ -209,7 +209,7 @@ $(function () {
         { data: 'width', name: 'width' },
         { data: 'weaver_mts', name: 'weaver_mts' },
         { data: 'order_mts', name: 'order_mts' },
-        { data: 'welt_mts', name: 'welt_mts' },
+        { data: 'weft_mts', name: 'weft_mts' },
         { data: 'order_date', name: 'order_date' },
         { data: 'count', name: 'count' },
         { data: 'attention', name: 'attention' },

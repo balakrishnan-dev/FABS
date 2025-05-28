@@ -97,18 +97,18 @@
                                     </div>
                                 </div>
 
-                                <div class="text-end">
+                                    <button type="submit" class="btn btn-success">Create</button>
                                     <a href="{{ route('packing_slips.index') }}" class="btn btn-secondary">Cancel</a>
-                                    <button type="submit" class="btn btn-primary">Create</button>
-                                </div>
+                             
                             </form>
-                        </div> <!-- end card-body -->
-                    </div> <!-- end card -->
+                            </div>
+                        </div>
+                    </div>
                 </div> <!-- end col -->
             </div> <!-- end row -->
 
-        </div> <!-- container-fluid -->
-    </div> <!-- page-content -->
-</div> <!-- main-content -->
+        </div>
+    </div>
+</div>
 
 @include('template.form_footer')

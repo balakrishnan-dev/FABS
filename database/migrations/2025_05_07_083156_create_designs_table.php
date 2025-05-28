@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('width')->nullable();
             $table->decimal('weaver_mts', 10, 2)->nullable();
             $table->decimal('order_mts', 10, 2)->nullable();
-            $table->decimal('welt_mts', 10, 2)->nullable();
+            $table->decimal('weft_mts', 10, 2)->nullable();
             $table->date('order_date')->nullable();
             $table->string('count')->nullable();
             $table->string('buyer_name');

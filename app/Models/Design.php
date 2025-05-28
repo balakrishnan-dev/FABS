@@ -9,6 +9,9 @@ class Design extends Model
 {
     use HasFactory;
 
+
+    protected $table = 'designs';
+    
     protected $fillable = [
         'loom_type',
         'order_type',
@@ -22,7 +25,7 @@ class Design extends Model
         'width',
         'weaver_mts',
         'order_mts',
-        'welt_mts',
+        'weft_mts',
         'order_date',
         'count',
         'buyer_name',

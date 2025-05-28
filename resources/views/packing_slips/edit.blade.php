@@ -98,10 +98,9 @@
                                     </div>
                                 </div>
 
-                                <div class="text-end">
+                                    <button type="submit" class="btn btn-success">Update</button>
                                     <a href="{{ route('packing_slips.index') }}" class="btn btn-secondary">Cancel</a>
-                                    <button type="submit" class="btn btn-primary">Update</button>
-                                </div>
+                           
                             </form>
                         </div> <!-- end card-body -->
                     </div> <!-- end card -->

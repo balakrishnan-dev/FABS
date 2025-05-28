@@ -1,14 +1,6 @@
 @include('template.form_header')
 @include('template.form_sidebar')
 <style>
-    #message {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        z-index: 1050;
-        width: 300px; /* or any width */
-    }
-
     #clno_autocomplete_list {
         max-height: 200px;
         overflow-y: auto;
@@ -278,17 +270,15 @@
                 </div>
             </div>
             <!-- End Page Title -->
-
+        <form action="{{ route('design_charts.store') }}" method="POST">
+                   @csrf
             <!-- Main Form Card -->
             <div class="row">
                 <div id="printableArea">
                 <div class="col-lg-12">
                     <div class="card shadow-sm">
                         <div class="card-body">
-                            <div id="customerList">
-                                <form action="{{ route('design_charts.store') }}" method="POST" id="designChartForm">
-                                    @csrf
-                                    <div class="row g-3">
+                           <div class="row g-3">
                                         <div class="col-12">
                                             <div class="inside-color">
                                                 <h5 class="mb-3">Design & Buyer Info</h5>
@@ -305,9 +295,6 @@
                                                                 </option>
                                                             @endforeach
                                                         </select>
-                                                            @error('read')
-                                                                <div class="text-danger mt-1">{{ $message }}</div>
-                                                            @enderror
                                                     </div>
 
                                                     <!-- Order Type -->
@@ -322,9 +309,6 @@
                                                                 </option>
                                                             @endforeach
                                                         </select>
-                                                        @error('read')
-                                                                <div class="text-danger mt-1">{{ $message }}</div>
-                                                            @enderror
                                                     </div>
 
                                                     <!-- CL No -->
@@ -335,9 +319,6 @@
                                                             autocomplete="off">
                                                         <ul id="clno_autocomplete_list"
                                                             class="list-group position-absolute w-100 d-none z-3"></ul>
-                                                            @error('read')
-                                                                <div class="text-danger mt-1">{{ $message }}</div>
-                                                            @enderror
                                                     </div>
 
                                                     <!-- Design Name -->
@@ -346,9 +327,6 @@
                                                         <input type="text" name="design_name" id="design_name"
                                                             class="form-control form-control-sm"
                                                             placeholder="Design Name">
-                                                            @error('read')
-                                                                <div class="text-danger mt-1">{{ $message }}</div>
-                                                            @enderror
                                                     </div>
 
                                                 </div>
@@ -363,44 +341,27 @@
                                                         <label for="read" class="form-label">Read</label>
                                                         <input type="number" name="read" id="read"
                                                             class="form-control form-control-sm">
-                                                            @error('read')
-                                                                <div class="text-danger mt-1">{{ $message }}</div>
-                                                            @enderror
                                                     </div>
-                                        
-
                                                     <div class="col-md-4">
                                                         <label for="pick" class="form-label">Pick</label>
                                                         <input type="number" name="pick" id="pick"
                                                             class="form-control form-control-sm">
-                                                            @error('pick')
-                                                                <div class="text-danger mt-1">{{ $message }}</div>
-                                                            @enderror
                                                     </div>
                                                     <div class="col-md-4">
                                                         <label for="width" class="form-label">Width</label>
                                                         <input type="number" name="width" id="width"
                                                             class="form-control form-control-sm">
-                                                            @error('width')
-                                                                <div class="text-danger mt-1">{{ $message }}</div>
-                                                            @enderror
                                                     </div>
                                                     <div class="col-md-4">
                                                         <label for="order_mts" class="form-label">Order Mts</label>
                                                         <input type="number" name="order_mts" id="order_mts"
                                                             class="form-control form-control-sm">
-                                                            @error('order_mts')
-                                                                <div class="text-danger mt-1">{{ $message }}</div>
-                                                            @enderror
                                                     </div>
                                                     <div class="col-md-5">
                                                         <label for="warp_ends" class="form-label">Warp Ends
                                                             (calculated)</label>
                                                         <input type="number" id="warp_ends" name="warp_ends"
                                                             class="form-control form-control-sm">
-                                                            @error('warp_ends')
-                                                                <div class="text-danger mt-1">{{ $message }}</div>
-                                                            @enderror
                                                     </div>
                                                 </div>
                                             </div>
@@ -427,7 +388,7 @@
                                                     <div class="col-md-4">
                                                         <label for="wa_weet" class="form-label">Wa Weet</label>
                                                         <input type="number" id="wa_weet" name="wa_weet"
-                                                            class="form-control form-control-sm" step="any">
+                                                            class="form-control form-control-sm">
 
                                                     </div>
                                                     <div class="col-md-4">
@@ -436,8 +397,8 @@
                                                             class="form-control form-control-sm">
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <label for="weft_mts" class="form-label">WeFt Mts</label>
-                                                        <input type="number" name="weft_mts" id="weft_mts"
+                                                        <label for="welt_mts" class="form-label">WeFt Mts</label>
+                                                        <input type="number" name="welt_mts" id="welt_mts"
                                                             class="form-control form-control-sm">
                                                     </div>
                                                     <div class="col-md-4">
@@ -446,8 +407,8 @@
                                                             class="form-control form-control-sm">
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <label for="we_ord_mts" class="form-label">We.Ord.Mts</label>
-                                                        <input type="number" name="we_ord_mts" id="we_ord_mts"
+                                                        <label for="weaver_mts" class="form-label">We.Ord.Mts</label>
+                                                        <input type="number" name="weaver_mts" id="weaver_mts"
                                                             class="form-control form-control-sm">
                                                     </div>
                                                 </div>
@@ -475,30 +436,30 @@
                                                         <tbody>
                                                             @foreach($designs as $index => $designCount)
                                                                 <tr>
-                                                                    <td class="text-center" name="warps[0][count]" >{{ $index + 1 }}</td>
+                                                                    <td class="text-center">{{ $index + 1 }}</td>
                                                                     <td>{{ $designCount->count }}</td>
                                                                     <td>
                                                                         <div class="position-relative">
-                                                                            <input type="text" class="form-control colours" 
-                                                                                placeholder="Enter colour" name="warps[0][colour]"
+                                                                            <input type="text" class="form-control colours"
+                                                                                placeholder="Enter colour"
                                                                                 autocomplete="off" />
                                                                             <ul
                                                                                 class="list-group autocomplete-colours-list d-none">
                                                                             </ul>
                                                                         </div>
                                                                     </td>
-                                                                    <td><input type="number" name="warps[0][warp]"
+                                                                    <td><input type="number"
                                                                             class="form-control form-control-sm warp-field" />
                                                                     </td>
-                                                                    <td><input type="text" name="warps[0][type]"
+                                                                    <td><input type="text"
                                                                             class="form-control form-control-sm type-field" />
                                                                     </td>
-                                                                    <td><input type="text" name="warps[0][set]"
+                                                                    <td><input type="text"
                                                                             class="form-control form-control-sm set-field" />
                                                                     </td>
-                                                                    <td><input type="text" name="warps[0][ext]"
+                                                                    <td><input type="text"
                                                                             class="form-control form-control-sm ext-field" /></td>
-                                                                    <td><input type="text" name="warps[0][db]"
+                                                                    <td><input type="text"
                                                                             class="form-control form-control-sm" /></td>
                                                                 </tr>
                                                             @endforeach
@@ -531,10 +492,10 @@
                                                             @foreach($designs as $index => $designCount)
                                                                 <tr>
                                                                     <td class="text-center">{{ $index + 1 }}</td>
-                                                                    <td name="warps[1][count]">{{ $designCount->count }}</td>
+                                                                    <td>{{ $designCount->count }}</td>
                                                                     <td>
                                                                         <div class="position-relative">
-                                                                            <input type="text" class="form-control colours" name="warps[1][colour]"
+                                                                            <input type="text" class="form-control colours"
                                                                                 placeholder="Enter colour"
                                                                                 autocomplete="off" />
                                                                             <ul
@@ -542,13 +503,13 @@
                                                                             </ul>
                                                                         </div>
                                                                     </td>
-                                                                    <td> 
-                                                                       <input type="number" name="warps[1][warp]" class="form-control form-control-sm weft-field" step="any"/>
+                                                                    <td><input type="number"
+                                                                            class="form-control form-control-sm weft-field" />
                                                                     </td>
-                                                                    <td><input type="text" name="warps[1][type]" 
+                                                                    <td><input type="text"
                                                                             class="form-control form-control-sm type-field" />
                                                                     </td>
-                                                                    <td><input type="text" 
+                                                                    <td><input type="text"
                                                                             class="form-control form-control-sm set-field" />
                                                                     </td>
                                                                     <td><input type="text"
@@ -564,7 +525,7 @@
                                         </div> 
 
                                     </div>
-                           
+                            
                             </div>
                             </div>
                             <div class="col-12 mt-3">
@@ -582,35 +543,38 @@
 
                                         <!-- Change Design Button -->
                                         <div class="col-md-2 d-flex align-items-end m-0">
-                                            <button type="button" class="btn btn-sm btn-primary w-100" id="changeDesignBtn"
+                                            <button class="btn btn-sm btn-primary w-100" id="changeDesignBtn"
                                                 data-bs-toggle="modal" data-bs-target="#colorModal">
                                                 Change Design
                                             </button>
                                         </div>
 
-
                                         <!-- Wea. Wt -->
                                         <div class="col-auto d-flex align-items-center m-0">
-                                            <label for="wea_wt" class="form-label mb-0 me-2"
+                                            <label for="weaWt" class="form-label mb-0 me-2"
                                                 style="white-space: nowrap;">Wea.
                                                 Wt</label>
-                                            <input type="text" class="form-control form-control-sm" id="wea_wt" name="wea_wt"
+                                            <input type="text" class="form-control form-control-sm" id="weaWt"
                                                 placeholder="Wea. Wt" style="width: 100px;">
                                         </div>
 
                                         <!-- Warp Wt -->
                                         <div class="col-auto d-flex align-items-center m-0">
-                                            <label for="warp_wt" class="form-label mb-0 me-2"
+                                            <label for="warpWt" class="form-label mb-0 me-2"
                                                 style="white-space: nowrap;">Warp
                                                 Wt</label>
-                                            <input type="text" class="form-control form-control-sm" id="warp_wt" name="warp_wt"
-                                                placeholder="Warp Wt" style="width: 100px;" step="any"> 
-                                        </div>  
-                                            <!-- Total Picks Display -->
-                                            <div class="col-auto d-flex align-items-center m-0">
-                                                <label for="total_picks" class="form-label mb-0 me-2" style="white-space: nowrap;">Total Picks</label>
-                                                <input type="number" name="total_picks" id="totalPicks" step="any" class="form-control" />
-                                            </div>
+                                            <input type="text" class="form-control form-control-sm" id="warpWt"
+                                                placeholder="Warp Wt" style="width: 100px;">
+                                        </div>
+
+                                        <!-- Total Picks -->
+                                        <div class="col-auto d-flex align-items-center m-0">
+                                            <label for="totalPicks" class="form-label mb-0 me-2"
+                                                style="white-space: nowrap;">Total
+                                                Picks</label>
+                                            <input type="number" class="form-control form-control-sm" id="totalPicks"
+                                                placeholder="Picks" style="width: 100px;">
+                                        </div>
                                     </div>
                                     <br>
                                     <!-- Row for 3 Inputs: Total Ends, Total Repeat, Extras -->
@@ -622,13 +586,13 @@
                                                 style="white-space: nowrap;">Total
                                                 Ends</label>
                                             <input type="number" class="form-control form-control-sm" id="totalEnds"
-                                                placeholder="Ends" style="width: 100px;" step="any">
+                                                placeholder="Ends" style="width: 100px;">
                                         </div>
 
                                         <!-- Extra Input 1 (No Label) -->
                                         <div class="col-auto d-flex align-items-center m-0 p-0">
                                             <input type="text" id="nearTotalEnds" class="form-control form-control-sm"
-                                                style="width: 100px;" step="any">
+                                                style="width: 100px;">
                                         </div>
 
                                         <!-- Total Repeat -->
@@ -637,7 +601,7 @@
                                                 style="white-space: nowrap;">Total
                                                 Repeat</label>
                                             <input type="number" class="form-control form-control-sm" id="totalRepeat"
-                                                placeholder="Repeat" style="width: 100px;" step="any">
+                                                placeholder="Repeat" style="width: 100px;">
                                         </div>
 
                                         <!-- Extras -->
@@ -645,13 +609,13 @@
                                             <label for="extras" class="form-label mb-0 me-2"
                                                 style="white-space: nowrap;">Extras</label>
                                             <input type="text" class="form-control form-control-sm" id="extras"
-                                                placeholder="Extras" step="any">
+                                                placeholder="Extras">
 
                                         </div>
                                         <!-- Extra Input 1 (No Label) -->
                                         <div class="col-auto d-flex align-items-center m-0 p-0">
                                             <input type="text" id="nearextras" class="form-control form-control-sm"
-                                                style="width: 100px;" step="any">
+                                                style="width: 100px;">
                                         </div>
                                     </div>
                                     <br>
@@ -659,12 +623,15 @@
                                         <div class="col-md-12">
                                             <div class="btn-group w-100" role="group" aria-label="Action Buttons"
                                                 style="gap: 4px;">
-                                                <button type="submit" class="btn btn-sm flex-fill rounded-0" style="background-color: #0d6efd; color: white; border: 2px solid #0047b3;">Save</button>
-                                                <button type="button" class="btn btn-sm flex-fill rounded-0" style="background-color: #0d6efd; color: white; border: 2px solid #0047b3;" onclick="printInvoice()">Print</button>
-                                                <!-- Hidden invoice -->
-                                                <div id="printArea" style="display:none;"></div>
+                                    <button type="submit" class="btn btn-sm flex-fill rounded-0"
+                style="background-color: #0d6efd; color: white; border: 2px solid #0047b3;">
+            Save
+        </button>
 
-
+        
+    </form>
+                                                <button type="button" class="btn btn-sm flex-fill rounded-0"
+                                                    style="background-color: #0d6efd; color: white; border: 2px solid #0047b3;" onclick="printInvoice()">Print</button>
                                                 <button type="button" class="btn btn-sm flex-fill rounded-0"
                                                     style="background-color: #0d6efd; color: white; border: 2px solid #0047b3;">Continue</button>
                                                 <button type="button" class="btn btn-sm flex-fill rounded-0"
@@ -679,9 +646,6 @@
                                 </div>
                             </div>
                         </div>
-                        </form>
-                    <div id="message-area" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
-
 
                         <!-- Modal -->
                         <div class="modal fade" id="colorModal" tabindex="-1" aria-labelledby="colorModalLabel"
@@ -748,210 +712,87 @@
 
             <!-- End main-content -->
         @include('template.form_footer')
-
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<script>
-let lastSavedData = null;
-
-$('#designChartForm').on('submit', function (e) {
-    e.preventDefault();
-
-    // Clear old errors and messages
-    $('.invalid-feedback').remove();           // Remove old error message elements
-    $('.is-invalid').removeClass('is-invalid'); // Remove error classes
-    $('#message-area').html('');                // Clear success message
-
-    $.ajax({
-        type: 'POST',
-        url: '{{ route("design_charts.store") }}',
-        data: $(this).serialize(),
-        success: function (response) {
-            if (response.status) {
-                lastSavedData = response.data;
-
-                // Show success message
-                $('#message-area').html(`
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        ${response.message}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                `);
-
-                // Optionally reset form after success
-                $('#designChartForm')[0].reset();
-            }
-        },
-        error: function(xhr) {
-            if (xhr.status === 422) {
-                // Validation errors from server
-                let errors = xhr.responseJSON.errors;
-
-                // Loop through errors and show next to each input
-                for (let field in errors) {
-                    let errorMessage = errors[field][0];
-                    let input = $(`[name="${field}"]`);
-
-                    input.addClass('is-invalid');
-
-                    // Append or show error message
-                    if (input.next('.invalid-feedback').length === 0) {
-                        input.after(`<div class="invalid-feedback">${errorMessage}</div>`);
-                    } else {
-                        input.next('.invalid-feedback').text(errorMessage);
-                    }
-                }
-            } else {
-                // For other errors, show toastr error like your example
-                toastr.error('An error occurred while saving the design.', 'Error', {
-                    positionClass: 'toast-top-right',
-                    timeOut: 5000,
-                });
-            }
-        }
-    });
-});
-</script>
-
-<script>
-$(document).ready(function () {
-    function calculateTotalPicks() {
-        let total = 0;
-        $('.weft-field').each(function () {
-            const val = parseFloat($(this).val());
-            if (!isNaN(val)) {
-                total += val;
-            }
-        });
-        $('#totalPicks').val(total.toFixed(2)); // Make sure this ID matches the input field
-        
-    }
-
-    // Recalculate total whenever any weft field changes
-    $(document).on('input', '.weft-field', calculateTotalPicks);
-
-    // Optional: Recalculate on page load if values exist
-    calculateTotalPicks();
-});
-</script>
-
-@if(session('success'))
-    <script>
-        toastr.options = {
-            "closeButton": true,
-            "progressBar": true,
-            "positionClass": "toast-top-right"
-        };
-        toastr.success("{{ session('success') }}");
-    </script>
-@endif
-
-@if(session('error'))
-    <script>
-        toastr.options = {
-            "closeButton": true,
-            "progressBar": true,
-            "positionClass": "toast-top-right"
-        };
-        toastr.error("{{ session('error') }}");
-    </script>
-@endif  
-
 <script>
 function printInvoice() {
-       if (!lastSavedData) {
-        // Replace alert with toast notification
-        toastr.error('No data to print.', 'Error', {
-            positionClass: 'toast-top-right',
-            timeOut: 5000,
-        });
-        return;
-    }
-    const data = lastSavedData;
+    const buyerName = document.querySelector('[name="buyer_name"]').value || '-';
+    const place = document.querySelector('[name="place"]').value || '-';
+    const invoiceDate = document.querySelector('[name="invoice_date"]').value || '-';
 
-    const printContent = `
-        <div style="font-family: Arial, sans-serif; padding: 20px; border: 1px solid #333; max-width: 900px; margin: auto;">
-    <h2 style="text-align: center; margin-bottom: 5px;">Design Chart Invoice</h2>
-    <hr style="border: 1px solid #000;">
+    const warpCount = document.querySelector('[name="warp_count"]').value || '-';
+    const warpColor = document.querySelector('[name="warp_color"]').value || '-';
+    const weftCount = document.querySelector('[name="weft_count"]').value || '-';
+    const weftColor = document.querySelector('[name="weft_color"]').value || '-';
 
-    <table border="1" cellspacing="0" cellpadding="8" style="width: 100%; border-collapse: collapse; font-size: 14px;">
-        <tr>
-            <th style="width: 25%; background-color: #f0f0f0;">Loom Type</th>
-            <td>${data.loom_type}</td>
-            <th style="width: 25%; background-color: #f0f0f0;">Order Type</th>
-            <td>${data.order_type}</td>
-        </tr>
-        <tr>
-            <th style="background-color: #f0f0f0;">CL No</th>
-            <td>${data.cl_no}</td>
-            <th style="background-color: #f0f0f0;">Design Name</th>
-            <td>${data.design_name}</td>
-        </tr>
-        <tr>
-            <th style="background-color: #f0f0f0;">Read</th>
-            <td>${data.read}</td>
-            <th style="background-color: #f0f0f0;">Pick</th>
-            <td>${data.pick}</td>
-        </tr>
-        <tr>
-            <th style="background-color: #f0f0f0;">Width</th>
-            <td>${data.width}</td>
-            <th style="background-color: #f0f0f0;">Order Mts</th>
-            <td>${data.order_mts}</td>
-        </tr>
-        <tr>
-            <th style="background-color: #f0f0f0;">Warp Ends</th>
-            <td>${data.warp_ends}</td>
-            <th style="background-color: #f0f0f0;">Reed</th>
-            <td>${data.r_reed}</td>
-        </tr>
-        <tr>
-            <th style="background-color: #f0f0f0;">Pick Text</th>
-            <td>${data.r_pick}</td>
-            <th style="background-color: #f0f0f0;">WA Weet</th>
-            <td>${data.wa_weet}</td>
-        </tr>
-        <tr>
-            <th style="background-color: #f0f0f0;">WE Weet</th>
-            <td>${data.we_weet}</td>
-            <th style="background-color: #f0f0f0;">Weft Mts</th>
-            <td>${data.weft_mts}</td>
-        </tr>
-        <tr>
-            <th style="background-color: #f0f0f0;">Pin</th>
-            <td>${data.pin}</td>
-            <th style="background-color: #f0f0f0;">We Ord Mts</th>
-            <td>${data.we_ord_mts}</td>
-        </tr>
-        <tr>
-            <th style="background-color: #f0f0f0;">Wea Wt</th>
-            <td>${data.wea_wt}</td>
-            <th style="background-color: #f0f0f0;">Warp Wt</th>
-            <td>${data.warp_wt}</td>
-        </tr>
-        <tr>
-            <th style="background-color: #f0f0f0;">Total Picks</th>
-            <td colspan="3">${data.total_picks}</td>
-        </tr>
-    </table>
-</div>
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+        <html>
+        <head>
+            <title>Design Bill</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 40px; }
+                h2 { text-align: center; }
+                table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+                td, th { border: 1px solid #000; padding: 8px; text-align: left; }
+                .header, .footer { text-align: center; }
+                .no-border { border: none !important; }
+            </style>
+        </head>
+        <body>
+            <div class="header">
+                <h2>DESIGN BILL</h2>
+                <p><strong>Company Name</strong><br>Address line 1<br>Phone: 123-456-7890</p>
+            </div>
 
-    `;
+            <table>
+                <tr><td><strong>Buyer Name:</strong></td><td>${buyerName}</td></tr>
+                <tr><td><strong>Place:</strong></td><td>${place}</td></tr>
+                <tr><td><strong>Invoice Date:</strong></td><td>${invoiceDate}</td></tr>
+            </table>
 
-    const printWindow = window.open('', '', 'width=900,height=700');
-    printWindow.document.write('<html><head><title>Print Invoice</title></head><body>');
-    printWindow.document.write(printContent);
-    printWindow.document.write('</body></html>');
+            <h4>Yarn Details</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Yarn Type</th>
+                        <th>Count</th>
+                        <th>Color</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Warp</td>
+                        <td>${warpCount}</td>
+                        <td>${warpColor}</td>
+                    </tr>
+                    <tr>
+                        <td>Weft</td>
+                        <td>${weftCount}</td>
+                        <td>${weftColor}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <br><br>
+            <div class="footer">
+                <p>Thank you for your business!</p>
+            </div>
+
+            <script>
+                window.onload = function() {
+                    window.print();
+                };
+            <\/script>
+        </body>
+        </html>
+    `);
+
     printWindow.document.close();
-    printWindow.print();
 }
 </script>
 
 
-
-
-<script>
-    function setupClAutocomplete(containerSelector, clInputId, designFieldId, listId) {
+        <script>
+            function setupClAutocomplete(containerSelector, clInputId, designFieldId, listId) {
     const $container = $(containerSelector);
     const $clInput = $container.find(clInputId);
     const $designInput = $container.find(designFieldId);
@@ -1144,7 +985,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <script>
     document.addEventListener('DOMContentLoaded',function(){
         const waWeetInput = document.getElementById('wa_weet');
-        const warpWtInput = document.getElementById('warp_wt');
+        const warpWtInput = document.getElementById('warpWt');
         waWeetInput.addEventListener('input', function(){
             warpWtInput.value = waWeetInput.value;
         })
@@ -1205,8 +1046,8 @@ $(document).ready(function () {
                 $('#width').val(data.width);
                 $('#pick').val(data.pick);
                 $('#order_mts').val(data.order_mts);
-                $('#weft_mts').val(data.weft_mts);
-                $('#we_ord_mts').val(data.we_ord_mts);
+                $('#welt_mts').val(data.welt_mts);
+                $('#weaver_mts').val(data.weaver_mts);
             } else {
                 clearFields();
             }
@@ -1214,7 +1055,7 @@ $(document).ready(function () {
     }
 
     function clearFields() {
-        $('#design_name, #read, #width, #pick, #order_mts, #weft_mts, #we_ord_mts').val('');
+        $('#design_name, #read, #width, #pick, #order_mts, #welt_mts, #weaver_mts').val('');
     }
 
     // --- 4. Recent Designs Filter ---
@@ -1274,46 +1115,41 @@ $(document).ready(function () {
     });
 
     // --- 6. Colour Suggestions ---
-   let activeColourInput = null;
-let suppressDropdown = false;
+    let activeColourInput = null;
+    let suppressDropdown = false; // flag to suppress dropdown
 
-$(document).on('focus input', '.colours', function () {
-    // Prevent showing dropdown immediately after a selection
-    if (suppressDropdown) {
-        suppressDropdown = false;
+    $(document).on('focus input', '.colours', function () {
+
+            if (suppressDropdown) {
+        // Skip fetching and showing dropdown immediately after selection
+        suppressDropdown = false; // reset flag
         return;
     }
 
-    activeColourInput = $(this);
-    const $dropdown = activeColourInput.siblings('.autocomplete-colours-list');
-    const query = activeColourInput.val().trim();
+        activeColourInput = $(this);
+        const $dropdown = $(this).siblings('.autocomplete-colours-list');
+        const query = $(this).val().trim();
 
-    if (query.length === 0) {
-        $dropdown.empty().addClass('d-none');
-        return;
-    }
-
-    $.get("{{ route('design_chart.filter_colours') }}", { search: query }, function (colours) {
+        if (query.length === 0) {
+            $dropdown.empty().addClass('d-none');
+            return;
+        }
+        $.get("{{ route('design_chart.filter_colours') }}", { search: query }, function (colours) {
         $dropdown.empty();
 
         if (colours.length === 0) {
             $dropdown.append('<li class="list-group-item text-muted">No colours found.</li>').removeClass('d-none');
             return;
         }
-
         colours.forEach(colour => {
             $('<li class="list-group-item list-colour-item"></li>')
                 .text(`${colour.colour_name} (${colour.tamil_colour_name})`)
                 .attr('data-colour-name', colour.colour_name)
                 .on('mousedown', function (e) {
                     e.preventDefault();
+                    activeColourInput.val($(this).data('colour-name')).trigger('input');
 
-                    // Set value just once and suppress further triggering
-                    activeColourInput.val($(this).data('colour-name'));
-
-                    suppressDropdown = true;
-
-                    // Hide dropdown shortly after
+                    suppressDropdown = true; // <-- set flag to suppress immediate re-show
                     setTimeout(() => {
                         $dropdown.addClass('d-none');
                     }, 100);
@@ -1322,25 +1158,17 @@ $(document).on('focus input', '.colours', function () {
         });
 
         $dropdown.removeClass('d-none');
-    }).fail(() => {
-        $dropdown.addClass('d-none');
     });
 });
 
-// Hide dropdown on blur (after short delay to allow click selection)
-$(document).on('blur', '.colours', function () {
-    const $dropdown = $(this).siblings('.autocomplete-colours-list');
-    setTimeout(() => {
-        $dropdown.addClass('d-none');
-    }, 150);
-});
 
-// Optional: Close dropdown on outside click
-$(document).on('click', function (e) {
-    if (!$(e.target).closest('.colours, .autocomplete-colours-list').length) {
-        $('.autocomplete-colours-list').addClass('d-none');
-    }
-});
+    // Hide colour dropdown when input loses focus
+    $(document).on('blur', '.colours', function () {
+        const $dropdown = $(this).siblings('.autocomplete-colours-list');
+        setTimeout(() => {
+            $dropdown.addClass('d-none');
+        }, 150); // Delay to allow click selection
+    });
 
     // --- 7. UI Toggle Cards Based on Focus ---
     $('#cl_no').on('focus click', () => {
@@ -1362,4 +1190,19 @@ $(document).on('click', function (e) {
     });
 
 });
+</script>
+<script>
+  // Example form submit handler
+  document.getElementById('colorForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('colourName').value;
+    const code = document.getElementById('colourCode').value;
+    alert(`Colour Name: ${name}\nColour Code: ${code}`);
+    // Close modal after submission
+    const modalElement = document.getElementById('colorModal');
+    const modalInstance = bootstrap.Modal.getInstance(modalElement);
+    modalInstance.hide();
+
+    // You can add your AJAX call or other logic here
+  });
 </script>

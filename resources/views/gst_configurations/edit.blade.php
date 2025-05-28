@@ -64,7 +64,7 @@
                    value="{{ $gstConfiguration->effective_from }}" required>
         </div>
 
-        <button class="btn btn-primary">Update</button>
+        <button class="btn btn-success">Update</button>
         <a href="{{ route('gst_configurations.index') }}" class="btn btn-secondary">Cancel</a>
     </form>
                 </div>

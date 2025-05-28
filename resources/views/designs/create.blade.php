@@ -180,11 +180,11 @@
                             @enderror
                         </div>
 
-                        <!-- Welt Mts -->
+                        <!-- Weft Mts -->
                         <div class="mb-3">
-                            <label for="welt_mts" class="form-label">Welt Meters</label>
-                            <input type="number" step="0.01" name="welt_mts" id="welt_mts" class="form-control">
-                            @error('welt_mts')
+                            <label for="weft_mts" class="form-label">Weft Meters</label>
+                            <input type="number" step="0.01" name="weft_mts" id="weft_mts" class="form-control">
+                            @error('weft_mts')
                                 <div class="text-danger mt-1">{{ $message }}</div>
                             @enderror
                         </div>
@@ -217,7 +217,7 @@
                             @enderror
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-success">Submit</button>
                         <a href="{{ route('designs.index') }}" class="btn btn-secondary">Back</a>
                     </form>
 

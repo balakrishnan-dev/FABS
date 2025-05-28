@@ -101,11 +101,9 @@
                                         <input type="text" name="GRN_no" class="form-control" value="{{ $Lorry->GRN_no }}" required>
                                     </div>
                                 </div>
-
-                                <div class="text-end">
+                                    <button type="submit" class="btn btn-success">Update</button>
                                     <a href="{{ route('lorries_masters.index') }}" class="btn btn-secondary">Cancel</a>
-                                    <button type="submit" class="btn btn-primary">Update</button>
-                                </div>
+                         
                             </form>
                         </div> <!-- end card-body -->
                     </div> <!-- end card -->

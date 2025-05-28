@@ -12,36 +12,46 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">bank-masters</h4>
+                        <h4 class="mb-sm-0">Bank</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="javascript:void(0);">bank-masters</a></li>
-                                <li class="breadcrumb-item active">bank-masters List</li>
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Bank </a></li>
+                                <li class="breadcrumb-item active">Bank List</li>
                             </ol>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- end page title -->
-
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <div id="customerList">
+                            <div id="banksList">
                                 <div class="row g-4 mb-3">
                                     <div class="col-sm-auto">
-                                        <a href="{{ route('bank-masters.create') }}" class="btn btn-success add-btn btn-sm">
-                                            <i class="ri-add-line align-bottom me-1"></i> Add
-                                        </a>
+                                        <div>
+                                            <a href="{{ route('bank-masters.create') }}" class="btn btn-success add-btn btn-sm">
+                                                <i class="ri-add-line align-bottom me-1"></i> Add
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm">
+                                        <div class="d-flex justify-content-sm-end">
+                                        </div>
                                     </div>
                                 </div>
 
-                                  <div class="table-responsive">
-                                    <table class="table w-100" id="banksTable">
-                                       <thead class="table-light">
-                                            <tr>
-                                                <th>ID</th>
+                                <div class="table-responsive">
+                                    <table class="table align-middle table-nowrap" id="banksTable">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th style="width: 100px;">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="checkAll" />
+                                                </div>
+                                            </th>
+                                              
                                                 <th>Bank Name</th>
                                                 <th>Account Number</th>
                                                 <th>IFSC Code</th>
@@ -51,22 +61,22 @@
                                                 <th>Updated At</th>
                                                 <th>Actions</th>
                                             </tr>
-                                        </thead>
-                                        <tbody>
-                                            <!-- Dynamic rows go here -->
-                                        </tbody>
-                                    </table>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Dynamic rows go here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                                 <!-- No result placeholder -->
+                            <div class="noresult d-none">
+                                <div class="text-center">
+                                    <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop"
+                                        colors="primary:#121331,secondary:#08a88a" style="width:75px;height:75px">
+                                    </lord-icon>
+                                    <h5 class="mt-2">Sorry! No Result Found</h5>
+                                    <p class="text-muted mb-0">No matching results found.</p>
                                 </div>
-                                <div class="noresult d-none">
-                                    <div class="text-center">
-                                        <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop"
-                                            colors="primary:#121331,secondary:#08a88a" style="width:75px;height:75px">
-                                        </lord-icon>
-                                        <h5 class="mt-2">Sorry! No Result Found</h5>
-                                        <p class="text-muted mb-0">We've searched more than 150+ Orders. No matching results found.</p>
-                                    </div>
-                                </div>
-                            </div> <!-- end customerList -->
+                            </div>
                         </div> <!-- end card-body -->
                     </div> <!-- end card -->
                 </div> <!-- end col -->
@@ -75,7 +85,7 @@
     </div> <!-- page-content -->
 </div> <!-- main-content -->
 
-<!-- Delete Confirmation Modal -->
+<!-- Modal -->
 <div class="modal fade zoomIn" id="deleteRecordModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -85,11 +95,10 @@
             <div class="modal-body">
                 <div class="mt-2 text-center">
                     <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop"
-                        colors="primary:#f7b84b,secondary:#f06548" style="width:100px;height:100px">
-                    </lord-icon>
+                        colors="primary:#f7b84b,secondary:#f06548" style="width:100px;height:100px"></lord-icon>
                     <div class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
-                        <h4>Are you Sure?</h4>
-                        <p class="text-muted mb-0">Are you sure you want to remove this record?</p>
+                        <h4>Are you Sure ?</h4>
+                        <p class="text-muted mx-4 mb-0">Are you Sure You want to Remove this Record?</p>
                     </div>
                 </div>
                 <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
@@ -100,10 +109,7 @@
         </div>
     </div>
 </div>
-<!-- End Modal -->
-
-
-
+<!-- end modal -->
 <!-- DataTables Scripts -->
 <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
@@ -113,9 +119,7 @@
 <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
 
 
-
-    @include('template.form_footer')
-
+@include('template.form_footer')
 
 @if(session('success'))
     <script>
@@ -142,17 +146,14 @@
 <script>
 $(function () {
     var table = $('#banksTable').DataTable({
-    processing: true,
-    serverSide: true,
-    lengthChange: true,
-    searching: true,
-    paging: true,
-    info: true,
-    scrollX: true,
-    scrollCollapse: true,
-    ajax: "{{ route('bank-masters.data') }}",
-   
-    columns: [
+        processing: true,
+        serverSide: true,
+        lengthChange: true,
+        searching: true,
+        paging: true,
+        info: true,
+        ajax: "{{ route('bank-masters.data') }}",
+        columns: [
         { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false },
         { data: 'bank_name', name: 'bank_name' },
         { data: 'account_number', name: 'account_number' },

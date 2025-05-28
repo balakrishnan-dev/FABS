@@ -103,10 +103,9 @@
                                     </div>
                                 </div>
                                 
-                                <div class="text-end">
-                                    <a href="{{ route('lorries_masters.index') }}" class="btn btn-primary">Cancel</a>
-                                    <button type="submit" class="btn btn-success">Create</button>
-                                </div>
+                                <button type="submit" class="btn btn-success">Create</button>
+                                <a href="{{ route('lorries_masters.index') }}" class="btn btn-primary">Cancel</a>
+                   
                             </form>
                         </div> <!-- end card-body -->
                     </div> <!-- end card -->

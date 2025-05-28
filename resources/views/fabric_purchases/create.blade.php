@@ -141,10 +141,10 @@
             <input type="number" step="0.01" name="order_mts" id="order_mts" class="form-control">
         </div>
 
-        <!-- Welt Mts -->
+        <!-- Weft Mts -->
         <div class="mb-3">
-            <label for="welt_mts" class="form-label">Welt Meters</label>
-            <input type="number" step="0.01" name="welt_mts" id="welt_mts" class="form-control">
+            <label for="weft_mts" class="form-label">Welt Meters</label>
+            <input type="number" step="0.01" name="weft_mts" id="weft_mts" class="form-control">
         </div>
 
         <!-- Order Date -->

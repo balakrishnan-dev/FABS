@@ -1,0 +1,388 @@
+        @include('template.form_header')
+        @include('template.form_sidebar')
+<style>
+#clno_autocomplete_list {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ced4da;
+    border-top: none;
+    background-color: #fff;
+    z-index: 1050;
+}
+#clno_autocomplete_list li {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+#clno_autocomplete_list li:hover {
+    background-color: #f8f9fa;
+}
+
+.autocomplete-colours-list {
+    max-height: 200px;
+    overflow-y: auto;
+    position: absolute;
+    width: 100%;
+    z-index: 1000;
+}
+
+.autocomplete-colours-list li {
+    cursor: pointer;
+}
+</style>
+
+            <!-- Vertical Overlay -->
+            <div class="vertical-overlay"></div>
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+                <div class="page-content">
+                    <div class="container-fluid">
+
+                        <!-- Start Page Title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-sm-flex align-items-   center justify-content-between">
+                                    <h4 class="mb-sm-0">Design Chart</h4>
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript:void(0);">Design</a></li>
+                                            <li class="breadcrumb-item active">Design Chart List</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Page Title -->
+
+                        <!-- Main Form Card -->
+                        <div class="row">
+                        
+                            <div class="col-lg-12">
+                                <div class="card shadow-sm">
+                                    <div class="card-body">
+                                        <div id="customerList">
+                                           <form>
+   <div class="row g-3">
+    <div class="col-12">
+        <h5 class="mb-3 text-primary">Design & Buyer Info</h5>
+
+        <div class="row g-3 align-items-end">
+            <!-- Loom Type -->
+            <div class="col-md-3">
+                <label for="loom_type" class="form-label">Loom Type</label>
+                <select name="loom_type" id="loom_type" class="form-select form-select-sm">
+                    <option value="">Select</option>
+                    @foreach ($designs as $loom)
+                        <option value="{{ $loom->loom_type }}">{{ $loom->loom_type }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <!-- Order Type -->
+            <div class="col-md-3">
+                <label for="order_type" class="form-label">Order Type</label>
+                <select name="order_type" id="order_type" class="form-select form-select-sm">
+                    <option value="">Select</option>
+                    @foreach ($designs as $order)
+                        <option value="{{ $order->order_type }}">{{ $order->order_type }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <!-- CL No -->
+            <div class="col-md-3 position-relative">
+                <label for="cl_no" class="form-label">CL No</label>
+                <input type="text" name="cl_no" id="cl_no" class="form-control form-control-sm" placeholder="CL No" autocomplete="off">
+                <ul id="clno_autocomplete_list" class="list-group position-absolute w-100 d-none z-3"></ul>
+            </div>
+
+            <!-- Design Name -->
+            <div class="col-md-3">
+                <label for="design_name" class="form-label">Design Name</label>
+                <input type="text" name="design_name" id="design_name" class="form-control form-control-sm" placeholder="Design Name">
+            </div>
+              
+    </div>
+</div>
+            <h3 class="text-secondary mb-2 mt-4">Buyer Information</h3>
+            <div class="row mb-3">
+                <!-- Read, Pick, Width -->
+                <div class="col-md-4">
+                    <label for="read" class="form-label">Read</label>
+                    <input type="number" name="read" id="read" class="form-control form-control-sm">
+                </div>
+                <div class="col-md-4">
+                    <label for="pick" class="form-label">Pick</label>
+                    <input type="number" name="pick" id="pick" class="form-control form-control-sm">
+                </div>
+                <div class="col-md-4">
+                    <label for="width" class="form-label">Width</label>
+                    <input type="number" name="width" id="width" class="form-control form-control-sm">
+                </div>
+                <div class="col-md-4">
+                    <label for="order_mts" class="form-label">Order Mts</label>
+                    <input type="number" name="order_mts" id="order_mts" class="form-control form-control-sm">
+                </div>
+                <div class="col-md-5">
+                    <label for="warp_ends" class="form-label">Warp Ends (calculated)</label>
+                    <input type="number" id="warp_ends" name="warp_ends" class="form-control form-control-sm">
+                    
+                </div>
+            </div>
+
+           
+
+            <h5 class="mb-3 text-primary">On Loom (For Yarn Calculation) Reed & Pick Info</h5>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="r_reed" class="form-label">Reed</label>
+                    <input type="number" id="r_reed" name="r_reed" class="form-control form-control-sm">
+                    
+                </div>
+                <div class="col-md-4">
+                    <label for="r_pick" class="form-label">Pick</label>
+                    <input type="number" name="r_pick" id="r_pick" class="form-control form-control-sm">
+                    
+                </div>
+                <div class="col-md-4">
+                    <label for="wa_weet" class="form-label">Wa Weet</label>
+                    <input type="number" id="wa_weet" name="wa_weet" class="form-control form-control-sm">
+                    
+                </div>
+                <div class="col-md-4">
+                    <label for="we_weet" class="form-label">We Weet</label>
+                    <input type="number" name="we_weet" id="we_weet" class="form-control form-control-sm">
+                </div>
+                <div class="col-md-4">
+                    <label for="welt_mts" class="form-label">WeFt Mts</label>
+                    <input type="number" name="welt_mts" id="welt_mts" class="form-control form-control-sm">
+                </div>
+                <div class="col-md-4">
+                    <label for="pin" class="form-label">Pin</label>
+                    <input type="number" name="pin" id="pin" class="form-control form-control-sm">
+                </div>
+                <div class="col-md-4">
+                    <label for="weaver_mts" class="form-label">We.Ord.Mts</label>
+                    <input type="number" name="weaver_mts" id="weaver_mts" class="form-control form-control-sm">
+                </div>
+            </div>
+
+<!-- Warp Details -->
+<div class="mt-4">
+    <h5 class="text-primary fw-semibold mb-3">Warp Details</h5>
+    <div class="table-responsive">
+        <table class="table table-bordered align-middle">
+            <thead class="table-primary text-center">
+                <tr>
+                    <th style="width: 60px;">S.No</th>
+                    <th>Count</th>
+                    <th>Colour</th>
+                    <th>Warp</th>
+                    <th>Type</th>
+                    <th>Set</th>
+                    <th>Ext</th>
+                    <th>DB</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($designs as $index => $designCount)
+                    <tr>
+                        <td class="text-center">{{ $index + 1 }}</td>
+                        <td>{{ $designCount->count }}</td>
+                        <td>
+                            <div class="position-relative">
+                                <input type="text" class="form-control colours" placeholder="Enter colour" autocomplete="off" />
+                                <ul class="list-group autocomplete-colours-list d-none"></ul>
+                            </div>
+                        </td>
+                        <td><input type="number" class="form-control form-control-sm warp-field" /></td>
+                        <td><input type="text" class="form-control form-control-sm type-field" /></td>
+                        <td><input type="text" class="form-control form-control-sm set-field" /></td>
+                        <td><input type="text" class="form-control form-control-sm" /></td>
+                        <td><input type="text" class="form-control form-control-sm" /></td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<!-- Weft Details -->
+<div class="mt-5">
+    <h5 class="text-success fw-semibold mb-3">Weft Details</h5>
+    <div class="table-responsive">
+        <table class="table table-bordered align-middle">
+            <thead class="table-success text-center">
+                <tr>
+                    <th style="width: 60px;">S.No</th>
+                    <th>Count</th>
+                    <th>Colour</th>
+                    <th>Weft</th>
+                    <th>Type</th>
+                    <th>Set</th>
+                    <th>Ext</th>
+                    <th>DB</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($designs as $index => $designCount)
+                    <tr>
+                        <td class="text-center">{{ $index + 1 }}</td>
+                        <td>{{ $designCount->count }}</td>
+                        <td><input type="text" class="form-control form-control-sm"/></td>
+                        <td><input type="text" class="form-control form-control-sm"/></td>
+                        <td><input type="text" class="form-control form-control-sm"/></td>
+                        <td><input type="text" class="form-control form-control-sm"/></td>
+                        <td><input type="text" class="form-control form-control-sm"/></td>
+                        <td><input type="text" class="form-control form-control-sm"/></td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+                    </div>
+            </form>
+        </div>
+<br>
+
+<div class="row align-items-center gy-2">
+  <!-- Design Chart -->
+  <div class="col-md-2">
+    <select class="form-select form-select-sm" id="designChart">
+      <option selected> Design Chart</option>
+      <option value="1">Design 1</option>
+      <option value="2">Design 2</option>
+      <option value="3">Design 3</option>
+    </select>
+  </div>
+
+  <!-- Change Design Button -->
+  <div class="col-md-2 d-flex align-items-end">
+    <button class="btn btn-sm btn-primary w-100" id="changeDesignBtn" data-bs-toggle="modal" data-bs-target="#colorModal">
+      Change Design
+    </button>
+  </div>
+
+  <!-- Wea. Wt -->
+  <div class="col-auto d-flex align-items-center">
+    <label for="weaWt" class="form-label mb-0 me-2" style="white-space: nowrap;">Wea. Wt</label>
+    <input type="text" class="form-control form-control-sm" id="weaWt" placeholder="Wea. Wt" style="width: 100px;">
+  </div>
+
+  <!-- Warp Wt -->
+  <div class="col-auto d-flex align-items-center">
+    <label for="warpWt" class="form-label mb-0 me-2" style="white-space: nowrap;">Warp Wt</label>
+    <input type="text" class="form-control form-control-sm" id="warpWt" placeholder="Warp Wt" style="width: 100px;">
+  </div>
+
+  <!-- Total Picks -->
+  <div class="col-auto d-flex align-items-center">
+    <label for="totalPicks" class="form-label mb-0 me-2" style="white-space: nowrap;">Total Picks</label>
+    <input type="number" class="form-control form-control-sm" id="totalPicks" placeholder="Picks" style="width: 100px;">
+  </div>
+</div>
+
+
+<br>
+<!-- Row for 3 Inputs: Total Ends, Total Repeat, Extras -->
+<div class="row align-items-center gy-2">
+
+    <!-- Total Ends -->
+    <div class="col-auto d-flex align-items-center">
+        <label for="totalEnds" class="form-label mb-0 me-2" style="white-space: nowrap;">Total Ends</label>
+        <input type="number" class="form-control form-control-sm" id="totalEnds" placeholder="Ends" style="width: 100px;">
+    </div>
+
+    <!-- Extra Input 1 (No Label) -->
+    <div class="col-auto d-flex align-items-center">
+        <input type="text" class="form-control form-control-sm" style="width: 100px;">
+    </div>
+
+    <!-- Total Repeat -->
+    <div class="col-auto d-flex align-items-center2">
+        <label for="totalRepeat" class="form-label mb-0 me-2" style="white-space: nowrap;">Total Repeat</label>
+        <input type="number" class="form-control form-control-sm" id="totalRepeat" placeholder="Repeat" style="width: 100px;">
+    </div>
+
+    <!-- Extras -->
+    <div class="col-auto d-flex align-items-center">
+        <label for="extras" class="form-label mb-0 me-2" style="white-space: nowrap;">Extras</label>
+        <input type="text" class="form-control form-control-sm" id="extras" placeholder="Extras">
+        
+    </div>
+        <!-- Extra Input 1 (No Label) -->
+    <div class="col-auto d-flex align-items-center">
+        <input type="text" id="nearextras" class="form-control form-control-sm" style="width: 100px;">
+    </div>
+</div>
+</div>
+<br>
+<div class="row mb-3">
+  <div class="col-md-12">
+    <div class="btn-group w-100" role="group" aria-label="Action Buttons" style="gap: 4px;">
+      <button type="button" class="btn btn-sm flex-fill rounded-0" style="background-color: #0d6efd; color: white; border: 2px solid #0047b3;">Save</button>
+      <button type="button" class="btn btn-sm flex-fill rounded-0" style="background-color: #0d6efd; color: white; border: 2px solid #0047b3;">Print</button>
+      <button type="button" class="btn btn-sm flex-fill rounded-0" style="background-color: #0d6efd; color: white; border: 2px solid #0047b3;">Continue</button>
+      <button type="button" class="btn btn-sm flex-fill rounded-0" style="background-color: #0d6efd; color: white; border: 2px solid #0047b3;">Delete</button>
+      <button type="button" class="btn btn-sm flex-fill rounded-0" style="background-color: #0d6efd; color: white; border: 2px solid #0047b3;">Picture</button>
+      <button type="button" class="btn btn-sm flex-fill rounded-0" style="background-color: #0d6efd; color: white; border: 2px solid #0047b3;">Exit</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="colorModal" tabindex="-1" aria-labelledby="colorModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="colorForm">
+        <div class="modal-header">
+          <h5 class="modal-title" id="colorModalLabel">Enter Colour Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Colour Name -->
+          <div class="mb-3">
+            <label for="colourName" class="form-label">Colour Name</label>
+            <input type="text" class="form-control" id="colourName" placeholder="Enter colour name" required>
+          </div>
+          <!-- Colour Code -->
+          <div class="mb-3">
+            <label for="colourCode" class="form-label">Colour Code</label>
+            <input type="text" class="form-control" id="colourCode" placeholder="#FFFFFF or rgb(255,255,255)" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary btn-sm">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Main Form Card -->
+
+                    </div>
+                </div>
+            </div>
+            <!-- End main-content -->
+
+
+
+    
+        @include('template.form_footer')

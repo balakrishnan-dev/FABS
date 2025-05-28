@@ -114,7 +114,7 @@
                             <li class="nav-item"><a href="{{ url('yarns_displays') }}" class="nav-link {{ Request::is('yarns_displays') ? 'active' : '' }}">Yarn Display</a></li>         
                             <li class="nav-item"><a href="{{ url('packing_slips') }}" class="nav-link {{ Request::is('packing_slips') ? 'active' : '' }}">Packing Slip</a></li>         
                             <li class="nav-item"><a href="{{ url('lorries_masters') }}" class="nav-link {{ Request::is('lorries_masters') ? 'active' : '' }}">Lorry Master</a></li>         
-                            <li class="nav-item"><a href="{{ url('lorries_invoice_display') }}" class="nav-link {{ Request::is('lorries_invoice_display') ? 'active' : '' }}">Lorry Invoice Display</a></li>         
+                            <!-- <li class="nav-item"><a href="{{ url('lorries_invoice_display') }}" class="nav-link {{ Request::is('lorries_invoice_display') ? 'active' : '' }}">Lorry Invoice Display</a></li>          -->
 
                         </ul>
                     </div>

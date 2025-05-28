@@ -14,16 +14,16 @@
                     <div class="page-content">
                         <div class="container-fluid">
 
-       <!-- start page title -->
-       <div class="row">
+                            <!-- start page title -->
+                            <div class="row">
                                 <div class="col-12">
                                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                        <h4 class="mb-sm-0">Edit Port Form</h4>
+                                        <h4 class="mb-sm-0">Edit Process Form</h4>
 
                                         <div class="page-title-right">
                                             <ol class="breadcrumb m-0">
-                                                <li class="breadcrumb-item"><a href="javascript: void(0);">Ports</a></li>
-                                                <li class="breadcrumb-item active">Port</li>
+                                                <li class="breadcrumb-item"><a href="javascript: void(0);">Process</a></li>
+                                                <li class="breadcrumb-item active">Process</li>
                                             </ol>
                                         </div>
 
@@ -37,12 +37,12 @@
     <div class="col-xxl-6">
         <div class="card">
             <div class="card-header align-items-center d-flex">
-                <h4 class="card-title mb-0 flex-grow-1">Edit Port</h4>
+                <h4 class="card-title mb-0 flex-grow-1">Edit Process</h4>
             </div><!-- end card header -->
 
             <div class="card-body">
                 <div class="live-preview">
-                    <!-- The action is updated to 'update' route with the correct port ID -->
+                    <!-- The action is updated to 'update' route with the correct Process ID -->
                     <form action="{{ route('process.update', $process->id) }}" method="POST">
                             @csrf
                             @method('PUT')
@@ -71,7 +71,7 @@
                                 @enderror
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-success">Update</button>
                             <a href="{{ route('process.index') }}" class="btn btn-secondary">Back</a>
                         </form>
 

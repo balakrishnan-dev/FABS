@@ -14,28 +14,21 @@ class LorryInvoiceDisplayController extends Controller
         return view('lorries_invoice_display.index');
     }
 
-    public function getData(Request $request){
-    if($request->ajax()){
-        $data = LorryInvoiceDisplay::latest()->get();
-        return DataTables::of($data)
-            ->addIndexColumn()
-            ->editColumn('created_at', function ($row) {
-                return Carbon::parse($row->created_at)->diffForHumans();
-            })
-            ->editColumn('updated_at', function ($row) {
-                return Carbon::parse($row->updated_at)->diffForHumans();
-            })
-            ->addColumn('action', function ($row) {
-                $editBtn = '<a href="' . route('lorries_invoice_display.edit', $row->id) . '" class="btn btn-sm btn-success">Edit</a>';
-                $deleteBtn = '<button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteRecordModal" data-id="'.$row->id.'">Remove</button>';
-                return $editBtn . ' ' . $deleteBtn;
-            })
-            ->rawColumns(['action'])
-            ->make(true);
-    }
+   public function getData(Request $request)
+{
+    $data = LorryInvoiceDisplay::latest()->get();
 
-    return response()->json(['message' => 'Bad Request'], 400);
+    return DataTables::of($data)
+        ->addIndexColumn()
+        ->addColumn('action', function($row){
+            $btn = '<a href="'.route('lorries_invoice_display.edit', $row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
+            $btn .= ' <button class="btn btn-danger btn-sm" data-id="'.$row->id.'" data-bs-toggle="modal" data-bs-target="#deleteRecordModal">Delete</button>';
+            return $btn;
+        })
+        ->rawColumns(['action'])
+        ->make(true);
 }
+
 
 
 

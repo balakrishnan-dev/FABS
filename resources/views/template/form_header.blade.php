@@ -11,14 +11,31 @@
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
         <meta content="Themesbrand" name="author" />
         <meta name="csrf-token" content="{{ csrf_token() }}">
-<!-- App favicon -->
-<link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
 
-<!-- Layout config Js -->
-<script src="{{ asset('assets/js/layout.js') }}"></script>
+        <!-- Layout config Js -->
+        <script src="{{ asset('assets/js/layout.js') }}"></script>
 
-<!-- Bootstrap Css -->
-<link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+        <!-- Bootstrap CSS (local + CDN for fallback/compatibility) -->
+        <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Bootstrap Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="..." crossorigin="anonymous"></script>
+
+        </head>
+
+
+        <!-- JS and Styles -->
+        <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+        <script src="//cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- Icons Css -->
 <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
@@ -36,6 +53,7 @@
     </head>
 
     <body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
         <!-- Begin page -->
         <div id="layout-wrapper">

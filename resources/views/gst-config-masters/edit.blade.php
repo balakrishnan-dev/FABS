@@ -64,7 +64,7 @@
                             @enderror
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="submit" class="btn btn-success">Update</button>
                         <a href="{{ route('gst-config-masters.index') }}" class="btn btn-secondary">Back</a>
                     </form>
                 </div>
